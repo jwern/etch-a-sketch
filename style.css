@@ -3,16 +3,18 @@ button {
     height: 80px;
     background-color: rgb(255, 255, 184);
     border: 2px solid rgb(21, 6, 88);
-    border-radius: 3px;
+    border-radius: 5px;
     color: rgb(26, 22, 16);
-    font-size: 20px;
+    font-size: 18px;
 }
 
 button:hover {
     width: 144px;
     height: 82px;
     margin-bottom: -2px;
-    font-size: 22px;
+    background-color: rgb(255, 255, 137);
+    color: rgb(22, 20, 16);
+    font-size: 20px;
 }
 
 .container {
@@ -21,6 +23,7 @@ button:hover {
     margin: auto;
     display: grid;
     border: 2px groove rgb(21, 6, 88);
+    border-radius: 5px;
 }
 
 .container div {
