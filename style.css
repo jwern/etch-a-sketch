@@ -3,3 +3,7 @@
     grid-template-columns: repeat(16, 80px);
     grid-template-rows: repeat(16, 80px);
 }
+
+.hover-change {
+    background-color: orange;
+}
