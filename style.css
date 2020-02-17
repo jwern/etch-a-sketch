@@ -2,14 +2,14 @@ button {
     width: 140px;
     height: 80px;
     background-color: rgb(255, 255, 140);
-    border: 1px solid rgba(21, 6, 88, 0.8);
+    border: 1px solid rgb(245, 245, 46);
     border-radius: 5px;
     color: rgb(26, 22, 16);
-    font-size: 18px;
+    font-size: 16px;
     margin: 0 10px;
-    -webkit-box-shadow: 6px 7px 8px -4px rgba(31,31,31,0.84);
-    -moz-box-shadow: 6px 7px 8px -4px rgba(31,31,31,0.84);
-    box-shadow: 6px 7px 8px -4px rgba(31,31,31,0.84);
+    /* -webkit-box-shadow: 6px 7px 8px -4px rgba(31,31,31,0.84);
+    -moz-box-shadow: 6px 7px 8px -4px rgba(31,31,31,0.84); */
+    box-shadow: 4px 4px 5px -4px rgba(21, 6, 88, 0.84);
     font-family: Arial, "Calibri", "Candara", "Alata", "Trebuchet MS", Helvetica, sans-serif;
     text-shadow: 1px 1px 2px white,
                  1px 1px 1px rgb(20, 53, 199),
@@ -23,7 +23,11 @@ button:hover {
     margin-left: 6px;
     background-color: rgb(255, 255, 169);
     color: rgb(22, 20, 16);
-    font-size: 20px;
+    font-size: 18px;
+}
+
+button:active {
+    outline: 0 !important;
 }
 
 .container {
@@ -51,4 +55,8 @@ button:hover {
 
 .add-gridlines {
     border: 0.5px solid rgba(21, 6, 88, 0.7);
+}
+
+#display-gridlines {
+    padding: 0 20px;
 }

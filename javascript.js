@@ -13,8 +13,6 @@ function drawGrid(userSelection) {
     for (let i = 1; i <= gridSize; i++) {
         outerContainer.appendChild(document.createElement("div"));
     }
-
-    // addColorChange();
 }
 
 function hoverOver(event) {
@@ -43,6 +41,12 @@ let resetButton = document.querySelector('#reset-sketchbook');
 resetButton.addEventListener("click", resetSketchbook);
 
 function resetSketchbook() {
+    let newGridSize = requestGridSize();
+
+    if (newGridSize === "cancel") {
+        return;
+    }
+
     let gridChildren = getGridChildren();
 
     for (const child of gridChildren) {
@@ -51,15 +55,17 @@ function resetSketchbook() {
 
     let keepGridlines = gridChildren[0].classList.contains("add-gridlines");
 
-    drawGrid(requestGridSize());
-    adjustGridlinesOnReset(keepGridlines);
+    drawGrid(newGridSize);
+    adjustGridlines(keepGridlines);
 }
 
 function requestGridSize() {
-    userSelection = Number(prompt("How many rows would you like the sketchbook to have?"));
-
-    if (typeof userSelection === "number" && userSelection > 0) {
-        return userSelection;
+    userSelection = prompt("How many rows would you like the sketchbook to have?");
+    console.log(userSelection);
+    if (typeof Number(userSelection) === "number" && Number(userSelection) > 0) {
+        return Number(userSelection);
+    } else if (userSelection == null || userSelection === '') {
+        return "cancel";
     } else {
         requestGridSize();
     } 
@@ -68,30 +74,19 @@ function requestGridSize() {
 let gridlineButton = document.querySelector('#display-gridlines');
 gridlineButton.addEventListener("click", adjustGridlines);
 
-function adjustGridlines() {
+function adjustGridlines(keepGridlines = true) {
     let gridChildren = getGridChildren();
+    let displayButton = document.querySelector('#display-gridlines');
 
-    if (gridChildren[0].classList.contains("add-gridlines")) {
+    if (gridChildren[0].classList.contains("add-gridlines") || !keepGridlines) {
         for (const child of gridChildren) {
             child.classList.remove("add-gridlines");
+            displayButton.textContent = "Show Gridlines";
         }
     } else {
         for (const child of gridChildren) {
             child.classList.add("add-gridlines");
-        }
-    }
-}
-
-function adjustGridlinesOnReset(keepGridlines) {
-    let gridChildren = getGridChildren();
-
-    if (keepGridlines) {
-        for (const child of gridChildren) {
-            child.classList.add("add-gridlines");
-        }
-    } else {
-        for (const child of gridChildren) {
-            child.classList.remove("add-gridlines");
+            displayButton.textContent = "Remove Gridlines";
         }
     }
 }
@@ -99,37 +94,3 @@ function adjustGridlinesOnReset(keepGridlines) {
 function getGridChildren() {
     return document.querySelector('.container').children;
 }
-
-// let gridlineButton = document.querySelector('#display-gridlines');
-// gridlineButton.addEventListener("click", function () {
-//     evaluateGridlines(false)
-//     });
-
-// function evaluateGridlines(resetBook) {
-//     console.log(resetBook);
-//     let gridChildren = getGridChildren();
-//     let hasGridlines = gridChildren[0].classList.contains("add-gridlines");
-    
-//     if (hasGridlines && resetBook) {
-//         addGridlines(gridChildren);
-//     } else if (hasGridlines && !resetBook) {
-//         removeGridlines(gridChildren);
-//     } else if (!hasGridlines && resetBook) {
-//         removeGridlines(gridChildren);
-//     } else {
-//         addGridlines(gridChildren);
-//     }
-
-// }
-
-// function addGridlines(children) {
-//     for (const child of children) {
-//         child.classList.add("add-gridlines");
-//     }
-// }
-
-// function removeGridlines(children) {
-//     for (const child of children) {
-//         child.classList.remove("add-gridlines");
-//     }
-// }
