@@ -1,14 +1,16 @@
 let outerContainer = document.querySelector('.container');
+let defaultGridSize = 16;
+
 outerContainer.addEventListener("mouseover", hoverOver);
+
 drawGrid();
 
-function drawGrid(userSelection) {
-    let defaultGridSize = 16;
-    let gridSize = userSelection ** 2 || defaultGridSize ** 2;
+function drawGrid(userSelection = defaultGridSize) {
+    let gridSize = userSelection ** 2;
     outerContainer.innerHTML = "";
     
-    outerContainer.style.gridTemplateColumns = `repeat(${userSelection || defaultGridSize}, 1fr)`;
-    outerContainer.style.gridTemplateRows = `repeat(${userSelection || defaultGridSize}, 1fr)`;
+    outerContainer.style.gridTemplateColumns = `repeat(${userSelection}, 1fr)`;
+    outerContainer.style.gridTemplateRows = `repeat(${userSelection}, 1fr)`;
 
     for (let i = 1; i <= gridSize; i++) {
         outerContainer.appendChild(document.createElement("div"));
@@ -31,10 +33,6 @@ function getAlpha(element) {
     }
 
     return alphaTag;
-}
-
-function randomNumber() {
-    return Math.floor(Math.random() * (255 + 1));
 }
 
 let resetButton = document.querySelector('#reset-sketchbook');
@@ -61,13 +59,13 @@ function resetSketchbook() {
 
 function requestGridSize() {
     userSelection = prompt("How many rows would you like the sketchbook to have?");
-    console.log(userSelection);
+    
     if (typeof Number(userSelection) === "number" && Number(userSelection) > 0) {
         return Number(userSelection);
     } else if (userSelection == null || userSelection === '') {
         return "cancel";
     } else {
-        requestGridSize();
+        return requestGridSize();
     } 
 }
 
@@ -76,17 +74,16 @@ gridlineButton.addEventListener("click", adjustGridlines);
 
 function adjustGridlines(keepGridlines = true) {
     let gridChildren = getGridChildren();
-    let displayButton = document.querySelector('#display-gridlines');
 
     if (gridChildren[0].classList.contains("add-gridlines") || !keepGridlines) {
         for (const child of gridChildren) {
             child.classList.remove("add-gridlines");
-            displayButton.textContent = "Show Gridlines";
+            gridlineButton.textContent = "Show Gridlines";
         }
     } else {
         for (const child of gridChildren) {
             child.classList.add("add-gridlines");
-            displayButton.textContent = "Remove Gridlines";
+            gridlineButton.textContent = "Remove Gridlines";
         }
     }
 }
