@@ -1,3 +1,7 @@
+body {
+    background-color: rgba(62, 49, 247, 0.267);
+}
+
 button {
     width: 140px;
     height: 80px;
@@ -37,6 +41,7 @@ button:active {
     display: grid;
     border: 2px groove rgb(21, 6, 88);
     border-radius: 5px;
+    background-color: rgb(247, 247, 255);
 }
 
 .container div {
