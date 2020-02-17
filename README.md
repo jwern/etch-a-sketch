@@ -18,7 +18,7 @@ I also did not add the line to remove previously created divs on reset until I w
 
 ## Screenshots ##
 
-[Desktop view screenshot](/images/screenshot.png)
+![Desktop view screenshot](/images/screenshot.png)
 
 ## To Do ##
 
